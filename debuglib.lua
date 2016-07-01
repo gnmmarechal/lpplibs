@@ -2,20 +2,20 @@
 -- https://github.com/gnmmarechal/lpplibs
 -- debuglib
 debuglibversion = 1
-Debug = {}
+DebugLib = {}
 
 --Colours
-	Debug.colorwhite = Color.new(255,255,255)
-	Debug.colorgreen = Color.new(0,240,32)
-	Debug.colorred = Color.new(255,0,0)
-	Debug.colorblack = Color.new(0,0,0)
-	Debug.colorcurrent = Debug.color.white
+	DebugLib.colorwhite = Color.new(255,255,255)
+	DebugLib.colorgreen = Color.new(0,240,32)
+	DebugLib.colorred = Color.new(255,0,0)
+	DebugLib.colorblack = Color.new(0,0,0)
+	DebugLib.colorcurrent = DebugLib.color.white
 	
-function Debug.setDebugColor(colorname) --Sets default debug lib text colour
-	Debug.colorcurrent = colorname
+function DebugLib.setDebugColor(colorname) --Sets default debug lib text colour
+	DebugLib.colorcurrent = colorname
 end
 
-function debuglib.require(version)
+function DebugLib.require(version)
 	if debuglibversion == version then
 	else
 		System.exit()
@@ -23,25 +23,25 @@ function debuglib.require(version)
 end
 
 
---Using code from Eucliod r6 for Debug.getFPS()
-Debug.varfpstimer = Timer.new()
-Debug.varfps = 0
-Debug.varfps_counter = 0
-function Debug.getFPS() --Gets framerate and returns its value
-	Debug.varfps_counter = Debug.varfps_counter + 1
-	if Timer.getTime(Debug.varfpstimer) > 1000 then
-		Timer.reset(Debug.varfpstimer)
-		Debug.varfps = Debug.varfps_counter
-		Debug.varfps_counter = 0
+--Using code from Eucliod r6 for DebugLib.getFPS()
+DebugLib.varfpstimer = Timer.new()
+DebugLib.varfps = 0
+DebugLib.varfps_counter = 0
+function DebugLib.getFPS() --Gets framerate and returns its value
+	DebugLib.varfps_counter = DebugLib.varfps_counter + 1
+	if Timer.getTime(DebugLib.varfpstimer) > 1000 then
+		Timer.reset(DebugLib.varfpstimer)
+		DebugLib.varfps = DebugLib.varfps_counter
+		DebugLib.varfps_counter = 0
 	end
-	return Debug.varfps
---	gpu_drawtext(160, 220, Debug.var.fps)
+	return DebugLib.varfps
+--	gpu_drawtext(160, 220, DebugLib.var.fps)
 end
-function Debug.drawFPS(DISPLAY) --Draws FPS on either TOP_SCREEN or BOTTOM_SCREEN
-	Debug.varframerate = Debug.getFPS()
-	Screen.debugPrint(0,0,"FPS:"..Debug.varframerate, Debug.colorcurrent, DISPLAY)
+function DebugLib.drawFPS(DISPLAY) --Draws FPS on either TOP_SCREEN or BOTTOM_SCREEN
+	DebugLib.varframerate = DebugLib.getFPS()
+	Screen.debugPrint(0,0,"FPS:"..DebugLib.varframerate, DebugLib.colorcurrent, DISPLAY)
 end
-function Debug.takeScreenshot()
+function DebugLib.takeScreenshot()
 	day_value,day,month,year = System.getDate()
 	h,m,s = System.getTime()
 	System.takeScreenshot("/scrshot-"..day_value..day..month..year..h..m..s..".bmp",false)
